@@ -15,11 +15,11 @@ namespace DataAccess.Concrete
         public InMemoryBrandDal()
         {
             _brandsList = new List<Brand> {
-                new Brand{BrandId=1,BrandName="BMW",ModelName="i3"},
-                new Brand{BrandId=2,BrandName="Audi",ModelName="a5"},
-                new Brand{BrandId=3,BrandName="Opel",ModelName="Astra"},
-                new Brand{BrandId=4,BrandName="Fiat",ModelName="Egea"},
-                new Brand{BrandId=5,BrandName="Ford",ModelName="Focus"}
+                new Brand{BrandId=1,BrandName="BMW",ModelId=1},
+                new Brand{BrandId=2,BrandName="Audi",ModelId=2},
+                new Brand{BrandId=3,BrandName="Opel",ModelId=4},
+                new Brand{BrandId=4,BrandName="Fiat",ModelId=5},
+                new Brand{BrandId=5,BrandName="Ford",ModelId=3}
             };
         }
 
@@ -56,7 +56,7 @@ namespace DataAccess.Concrete
         {
             Brand _brand = _brandsList.SingleOrDefault(b => brand.BrandId == b.BrandId);
             _brand.BrandName = brand.BrandName;
-            _brand.ModelName = brand.ModelName;
+            _brand.ModelId = brand.ModelId;
         }
 
       
