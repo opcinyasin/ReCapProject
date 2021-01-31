@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Business.Concrete;
+using DataAccess.Abstract;
+using DataAccess.Concrete;
+using Entities.Concrete;
+using System;
 
 namespace ConsoleUI
 {
@@ -6,7 +10,14 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+
+            BrandManager brandManager = new BrandManager(new InMemoryBrandDal());
+
+            CarManager carManager = new CarManager(new InMemoryCarDal(),brandManager);
+
+            foreach(Car car in carManager.GetAll()) {
+                Console.WriteLine(brandManager.GetById(car.BrandId).BrandName);
+            }
         }
     }
 }
