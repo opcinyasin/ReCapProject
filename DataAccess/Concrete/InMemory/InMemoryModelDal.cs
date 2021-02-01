@@ -7,7 +7,7 @@ using System.Text;
 
 namespace DataAccess.Concrete.InMemory
 {
-    class InMemoryModelDal : IModelDal
+    public class InMemoryModelDal : IModelDal
     {
 
 
