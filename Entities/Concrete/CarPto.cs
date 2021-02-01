@@ -12,7 +12,7 @@ namespace Entities.Concrete
 
         public string ModelName { get; set; }
 
-        public string ColorId { get; set; }
+        public string ColorName { get; set; }
         public string ModelYear { get; set; }
 
         public decimal DailyPrice { get; set; }
