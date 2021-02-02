@@ -39,7 +39,7 @@ namespace DataAccess.Concrete
 
         public Car GetById(int id)
         {
-            return (Car) _carsList.Where(c => c.Id == id);
+            return (Car) _carsList.SingleOrDefault(c => c.Id == id);
         }
 
         public void Update(Car car)

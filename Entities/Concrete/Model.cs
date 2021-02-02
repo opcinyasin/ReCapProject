@@ -7,7 +7,7 @@ namespace Entities.Concrete
 {
     public class Model:IEntity
     {
-        public int BrandId { get; set; }
+        
         public int ModelId { get; set; }
         public string ModelName { get; set; }
     }

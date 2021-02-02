@@ -17,11 +17,11 @@ namespace DataAccess.Concrete.InMemory
         {
             _modelList = new List<Model>
             {
-                new Model{ModelId=1, ModelName="i3",BrandId=1},
-                new Model{ModelId=2, ModelName="a5",BrandId=2},
-                new Model{ModelId=3,ModelName="Focus",BrandId=5},
-                new Model{ModelId=4,ModelName="Astra",BrandId=3},
-                new Model{ModelId=5,ModelName="Egea",BrandId=4}
+                new Model{ModelId=1, ModelName="i3"},
+                new Model{ModelId=2, ModelName="a5"},
+                new Model{ModelId=3,ModelName="Focus"},
+                new Model{ModelId=4,ModelName="Astra"},
+                new Model{ModelId=5,ModelName="Egea"}
             };
         }
 
@@ -55,7 +55,7 @@ namespace DataAccess.Concrete.InMemory
         {
             Model _model= _modelList.SingleOrDefault(m => m.ModelId == model.ModelId);
             _model.ModelName = model.ModelName;
-            _model.BrandId = model.BrandId;
+            
         }
     }
 }

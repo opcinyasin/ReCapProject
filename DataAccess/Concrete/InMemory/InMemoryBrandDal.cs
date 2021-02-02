@@ -42,7 +42,7 @@ namespace DataAccess.Concrete
 
         public Brand GetById(int Id)
         {
-            return _brandsList.First(b => Id == b.BrandId);
+            return _brandsList.SingleOrDefault(b => Id == b.BrandId);
         }
 
         public bool isBrandId(int Id)
