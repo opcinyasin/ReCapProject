@@ -1,6 +1,7 @@
 ﻿using Business.Concrete;
 using DataAccess.Abstract;
 using DataAccess.Concrete;
+using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 using System;
@@ -14,25 +15,22 @@ namespace ConsoleUI
         static void Main(string[] args)
         {
 
-            BrandManager brandManager = new BrandManager(new InMemoryBrandDal());
+            BrandManager brandManager = new BrandManager(new EfBrandDal());
 
-            ModelManager modelManager = new ModelManager(new InMemoryModelDal());
+            ModelManager modelManager = new ModelManager(new EfModelDal());
 
-            ColorManager colorManager = new ColorManager(new InMemoryColorDal());
+            ColorManager colorManager = new ColorManager(new EfColorDal());
 
-            CarManager carManager = new CarManager(new InMemoryCarDal());
+            CarManager carManager = new CarManager(new EfCarDal());
 
-            CarDtoManager carDtoManager = new CarDtoManager(carManager, brandManager, colorManager, modelManager);
-
-
-
-            var result = carDtoManager.GetAll();
+            var carDtoManager = new CarDtoManager(carManager.GetCarsByColorId(3), brandManager, colorManager, modelManager);
 
 
-            foreach (CarPto car in result)
+
+
+            foreach (var item in carDtoManager.GetAll())
             {
-                Console.WriteLine("-----------******************---------------");
-                Console.WriteLine($"{car.BrandName} {car.ModelName} aracın fiyatı {car.DailyPrice} ve rengi {car.ColorName}");
+                Console.WriteLine("{0} {1} aracın fiyatı {2} model yılı {3}", item.BrandName, item.ModelName, item.Price, item.ModelYear);
             }
 
 

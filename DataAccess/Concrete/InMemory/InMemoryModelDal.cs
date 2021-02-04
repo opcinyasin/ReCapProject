@@ -3,6 +3,7 @@ using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace DataAccess.Concrete.InMemory
@@ -36,9 +37,19 @@ namespace DataAccess.Concrete.InMemory
             _modelList.Remove(_model);
         }
 
+        public Model Get(Expression<Func<Model, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Model> GetAll()
         {
             return _modelList;
+        }
+
+        public List<Model> GetAll(Expression<Func<Model, bool>> filter = null)
+        {
+            throw new NotImplementedException();
         }
 
         public Model GetById(int Id)

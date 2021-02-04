@@ -20,7 +20,38 @@ namespace Business.Concrete
 
         public void Add(Car car)
         {
-            
+            int carprice = Convert.ToInt32(car.Price);
+
+            if (car.Description.Length >= 2)
+            {
+                if (carprice > 0)
+                {
+                    if (car.ModelYear.Length == 4)
+                    {
+                        _carDal.Add(car);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Model Yılını kontrol ediniz");
+                    }
+
+
+                }
+                else
+                {
+                    Console.WriteLine("Günlük fiyat 0 dan büyük olmalı");
+                }
+
+            }
+            else
+            {
+                Console.WriteLine("Araç açıklaması 2 karakterden uzun olmalı ");
+            }
+
+
+
+
+
         }
 
         public void Delete(Car car)
@@ -33,7 +64,15 @@ namespace Business.Concrete
             return _carDal.GetAll();
         }
 
+        public List<Car> GetCarsByBrandId(int id)
+        {
+            return _carDal.GetAll(b => b.BrandId == id);
+        }
 
+        public List<Car> GetCarsByColorId(int id)
+        {
+            return _carDal.GetAll(b => b.ColorId == id);
+        }
 
         public void Update(Car car)
         {
