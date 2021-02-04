@@ -11,7 +11,7 @@ namespace DataAccess.Abstract
         void Add(Color color);
         void Update(Color color);
         void Delete(Color color);
-        bool isBrandId(int Id);
+        bool isColorId(int Id);
         Color GetById(int Id);
     }
 }

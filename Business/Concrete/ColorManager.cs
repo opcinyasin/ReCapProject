@@ -1,4 +1,5 @@
-﻿using DataAccess.Abstract;
+﻿using Business.Abstract;
+using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    public class ColorManager : IColorDal
+    public class ColorManager : IColorService
     {
 
         IColorDal colorDal;
@@ -36,9 +37,9 @@ namespace Business.Concrete
             return colorDal.GetById(Id);
         }
 
-        public bool isBrandId(int Id)
+        public bool isColorId(int Id)
         {
-            return colorDal.isBrandId(Id);
+            return colorDal.isColorId(Id);
         }
 
         public void Update(Color color)

@@ -36,9 +36,6 @@ namespace ConsoleUI
             }
 
 
-            
-
-
         }
     }
 }

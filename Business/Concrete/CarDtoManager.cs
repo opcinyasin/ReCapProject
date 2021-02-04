@@ -11,25 +11,25 @@ namespace Business.Concrete
     public class CarDtoManager : ICarDtoService
     {
 
-        ICarService _carDal;
-        IBrandService _brandDal;
-        IColorDal _colorDal;
-        IModelDal _modelDal;
+        ICarService _carService;
+        IBrandService _brandService;
+        IColorService _colorService;
+        IModelService _modelService;
 
-        public CarDtoManager(ICarService carDal, IBrandService brandDal, IColorDal colorDal, IModelDal modelDal)
+        public CarDtoManager(ICarService carService, IBrandService brandService, IColorService colorService, IModelService modelService)
         {
-            _carDal = carDal;
-            _brandDal = brandDal;
-            _colorDal = colorDal;
-            _modelDal = modelDal;
+            _carService = carService;
+            _brandService = brandService;
+            _colorService = colorService;
+            _modelService = modelService;
         }
 
         public List<CarPto> GetAll()
         {
-            var result =  from c in _carDal.GetAll()
-                                        join b in _brandDal.GetAll() on c.BrandId equals b.BrandId
-                                        join m in _modelDal.GetAll() on b.ModelId equals m.ModelId
-                                        join col in _colorDal.GetAll() on c.ColorId equals col.ColorId
+            var result =  from c in _carService.GetAll()
+                                        join b in _brandService.GetAll() on c.BrandId equals b.BrandId
+                                        join m in _modelService.GetAll() on b.ModelId equals m.ModelId
+                                        join col in _colorService.GetAll() on c.ColorId equals col.ColorId
                                         select new CarPto { Id = c.Id, BrandName = b.BrandName, ModelName = m.ModelName, ColorName = col.ColorName, ModelYear = c.ModelYear, DailyPrice = c.DailyPrice, Description = c.Description };
 
             return result.ToList();
@@ -38,10 +38,10 @@ namespace Business.Concrete
         public CarPto GetById(int id)
         {
 
-            var c = _carDal.GetById(id);
-            var b = _brandDal.GetById(c.BrandId);
-            var m = _modelDal.GetById(b.ModelId);
-            var col = _colorDal.GetById(c.ColorId);
+            var c = _carService.GetById(id);
+            var b = _brandService.GetById(c.BrandId);
+            var m = _modelService.GetById(b.ModelId);
+            var col = _colorService.GetById(c.ColorId);
             
             return new CarPto { Id = c.Id, BrandName = b.BrandName, ModelName = m.ModelName, ColorName = col.ColorName, ModelYear = c.ModelYear, DailyPrice = c.DailyPrice, Description = c.Description };
         }

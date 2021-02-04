@@ -43,7 +43,7 @@ namespace DataAccess.Concrete.InMemory
             return _colorList.SingleOrDefault(c=>c.ColorId==Id);
         }
 
-        public bool isBrandId(int Id)
+        public bool isColorId(int Id)
         {
             return _colorList.Where(c => c.ColorId == Id).Any();
         }

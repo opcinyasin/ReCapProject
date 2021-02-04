@@ -1,11 +1,12 @@
-﻿using DataAccess.Abstract;
+﻿using Business.Abstract;
+using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 
 namespace Business.Concrete
 {
-    public class ModelManager : IModelDal
+    public class ModelManager : IModelService
     {
         IModelDal _modelDal;
 
