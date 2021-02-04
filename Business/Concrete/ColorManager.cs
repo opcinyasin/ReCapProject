@@ -32,15 +32,6 @@ namespace Business.Concrete
             return colorDal.GetAll();
         }
 
-        public Color GetById(int Id)
-        {
-            return colorDal.GetById(Id);
-        }
-
-        public bool isColorId(int Id)
-        {
-            return colorDal.isColorId(Id);
-        }
 
         public void Update(Color color)
         {

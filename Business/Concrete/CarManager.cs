@@ -10,24 +10,17 @@ namespace Business.Concrete
     public class CarManager : ICarService
     {
         ICarDal _carDal;
-        BrandManager _brandManager;
+        
 
-        public CarManager(ICarDal carDal, BrandManager brandManager)
+        public CarManager(ICarDal carDal)
         {
             _carDal = carDal;
-            _brandManager = brandManager;
+            
         }
 
         public void Add(Car car)
         {
-            if (_brandManager.isBrandId(car.Id))
-            {
-                _carDal.Add(car);    
-            }
-            else
-            {
-                Console.WriteLine("Sistemimizde bu marka araç satışı yapılmamaktadır.");
-            }
+            
         }
 
         public void Delete(Car car)
@@ -40,10 +33,7 @@ namespace Business.Concrete
             return _carDal.GetAll();
         }
 
-        public Car GetById(int id)
-        {
-            return _carDal.GetById(id);
-        }
+
 
         public void Update(Car car)
         {

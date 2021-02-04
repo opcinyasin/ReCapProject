@@ -20,7 +20,7 @@ namespace ConsoleUI
 
             ColorManager colorManager = new ColorManager(new InMemoryColorDal());
 
-            CarManager carManager = new CarManager(new InMemoryCarDal(),brandManager);
+            CarManager carManager = new CarManager(new InMemoryCarDal());
 
             CarDtoManager carDtoManager = new CarDtoManager(carManager, brandManager, colorManager, modelManager);
 

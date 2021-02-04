@@ -35,15 +35,5 @@ namespace Business.Concrete
             return result.ToList();
         }
 
-        public CarPto GetById(int id)
-        {
-
-            var c = _carService.GetById(id);
-            var b = _brandService.GetById(c.BrandId);
-            var m = _modelService.GetById(b.ModelId);
-            var col = _colorService.GetById(c.ColorId);
-            
-            return new CarPto { Id = c.Id, BrandName = b.BrandName, ModelName = m.ModelName, ColorName = col.ColorName, ModelYear = c.ModelYear, DailyPrice = c.DailyPrice, Description = c.Description };
-        }
     }
 }

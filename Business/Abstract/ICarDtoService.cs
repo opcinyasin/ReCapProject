@@ -7,7 +7,7 @@ namespace Business.Abstract
 {
     public interface ICarDtoService
     {
-        CarPto GetById(int id);
+        
         List<CarPto> GetAll();
     }
 }

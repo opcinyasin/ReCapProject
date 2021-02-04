@@ -11,8 +11,6 @@ namespace Business.Abstract
         void Add(Model model);
         void Update(Model model);
         void Delete(Model model);
-        bool isModelId(int Id);
-
-        Model GetById(int Id);
+        
     }
 }
