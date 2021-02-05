@@ -23,7 +23,7 @@ namespace ConsoleUI
 
             CarManager carManager = new CarManager(new EfCarDal());
 
-            var carDtoManager = new CarDtoManager(carManager.GetCarsByColorId(3), brandManager, colorManager, modelManager);
+            var carDtoManager = new CarDtoManager(carManager.GetCarsByPrice(160000,185000), brandManager, colorManager, modelManager);
 
 
 

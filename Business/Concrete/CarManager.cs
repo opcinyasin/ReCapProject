@@ -74,6 +74,16 @@ namespace Business.Concrete
             return _carDal.GetAll(b => b.ColorId == id);
         }
 
+        public List<Car> GetCarsByModelId(int id)
+        {
+            return _carDal.GetAll(m => m.ModelId == id);
+        }
+
+        public List<Car> GetCarsByPrice(int min, int max)
+        {
+            return _carDal.GetAll(p => Convert.ToInt32(p.Price) >= min && Convert.ToInt32(p.Price) <= max);
+        }
+
         public void Update(Car car)
         {
             _carDal.Update(car);
