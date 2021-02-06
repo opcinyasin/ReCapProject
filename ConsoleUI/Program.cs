@@ -23,15 +23,8 @@ namespace ConsoleUI
 
             CarManager carManager = new CarManager(new EfCarDal());
 
-            var carDtoManager = new CarDtoManager(carManager.GetCarsByPrice(160000,185000), brandManager, colorManager, modelManager);
 
-
-
-
-            foreach (var item in carDtoManager.GetAll())
-            {
-                Console.WriteLine("{0} {1} aracın fiyatı {2} model yılı {3}", item.BrandName, item.ModelName, item.Price, item.ModelYear);
-            }
+            carManager.GetCarDetails(new Car { Id = 2 });
 
 
         }

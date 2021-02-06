@@ -15,6 +15,7 @@ namespace Business.Abstract
         List<Car> GetCarsByColorId(int id);
         List<Car> GetCarsByModelId(int id);
         List<Car> GetCarsByPrice(int min,int max);
+        CarPto GetCarDetails(Car car);
 
     }
 }

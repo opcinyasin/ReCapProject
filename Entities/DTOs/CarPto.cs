@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Core.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Entities.Concrete
 {
-    public class CarPto
+    public class CarPto:IDto
     {
         public int Id { get; set; }
         public string BrandName { get; set; }
