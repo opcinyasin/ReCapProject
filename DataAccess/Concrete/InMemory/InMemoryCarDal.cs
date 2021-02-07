@@ -53,7 +53,7 @@ namespace DataAccess.Concrete
             return (Car) _carsList.SingleOrDefault(c => c.Id == id);
         }
 
-        public CarPto GetCarDetail(Car car)
+        public CarPto GetCarDetailById(int id)
         {
             throw new NotImplementedException();
         }

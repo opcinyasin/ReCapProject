@@ -24,9 +24,9 @@ namespace ConsoleUI
             CarManager carManager = new CarManager(new EfCarDal());
 
 
-            carManager.GetCarDetails(new Car { Id = 2 });
+            var result=carManager.GetCarDetailsById(3);
 
-
+            Console.WriteLine("{0} {1} aracın fiyatı: {2}",result.BrandName,result.ModelName,result.Price);
         }
     }
 }
