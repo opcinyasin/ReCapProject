@@ -1,16 +1,14 @@
-﻿using Entities.Concrete;
+﻿using Core.Business;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Business.Abstract
 {
-    public interface IModelService
+    public interface IModelService:IService<Model>
     {
-        List<Model> GetAll();
-        void Add(Model model);
-        void Update(Model model);
-        void Delete(Model model);
+        
         
     }
 }
