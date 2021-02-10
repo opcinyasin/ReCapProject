@@ -1,35 +1,34 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Core.Utilities;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Business.Concrete
 {
     public class CarManager : ICarService
     {
         ICarDal _carDal;
-        
+
 
         public CarManager(ICarDal carDal)
         {
             _carDal = carDal;
-            
+
         }
 
         public IResult Add(Car car)
         {
 
             var result = Validation(car);
-            
+
             if (result.Success)
             {
                 _carDal.Add(car);
-                return new SuccessResult("Aracınız eklendi");
+                return new SuccessResult(Messages.CarAdded);
             }
             else
             {
@@ -92,20 +91,20 @@ namespace Business.Concrete
                     }
                     else
                     {
-                        return new ErrorResult("Model yılını kontrol ediniz.");
+                        return new ErrorResult(Messages.CarModelYearInvalid);
                     }
 
 
                 }
                 else
                 {
-                    return new ErrorResult("Aracın fiyatı 0 dan büyük olmalı");
+                    return new ErrorResult(Messages.CarPriceInvalid);
                 }
 
             }
             else
             {
-                return new ErrorResult("Araç açıklaması 2 karakterden uzun olmalı.");
+                return new ErrorResult(Messages.CarDescriptionInvalid);
             }
         }
     }
