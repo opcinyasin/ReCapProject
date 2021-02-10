@@ -87,7 +87,7 @@ namespace Business.Concrete
                 {
                     if (car.ModelYear.Length == 4)
                     {
-                        return new Result(true);
+                        return new SuccessResult();
                     }
                     else
                     {
