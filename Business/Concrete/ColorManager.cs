@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Core.Utilities;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -17,9 +19,10 @@ namespace Business.Concrete
             this.colorDal = colorDal;
         }
 
-        public void Add(Color color)
+        public IResult Add(Color color)
         {
             colorDal.Add(color);
+            return new SuccessResult("Eklendi");
         }
 
         public void Delete(Color color)

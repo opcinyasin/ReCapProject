@@ -26,8 +26,9 @@ namespace ConsoleUI
 
             var result = carManager.GetCarDetailsById(8);
 
-            
+
             Console.WriteLine("{0} {1} aracın fiyatı: {2}", result.BrandName, result.ModelName, result.Price);
+
         }
     }
 }

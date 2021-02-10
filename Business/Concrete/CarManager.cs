@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Core.Utilities;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -19,39 +21,20 @@ namespace Business.Concrete
             
         }
 
-        public void Add(Car car)
+        public IResult Add(Car car)
         {
-            int carprice = Convert.ToInt32(car.Price);
 
-            if (car.Description.Length >= 2)
+            var result = Validation(car);
+            
+            if (result.Success)
             {
-                if (carprice > 0)
-                {
-                    if (car.ModelYear.Length == 4)
-                    {
-                        _carDal.Add(car);
-                    }
-                    else
-                    {
-                        Console.WriteLine("Model Yılını kontrol ediniz");
-                    }
-
-
-                }
-                else
-                {
-                    Console.WriteLine("Günlük fiyat 0 dan büyük olmalı");
-                }
-
+                _carDal.Add(car);
+                return new SuccessResult("Aracınız eklendi");
             }
             else
             {
-                Console.WriteLine("Araç açıklaması 2 karakterden uzun olmalı ");
+                return result;
             }
-
-
-
-
 
         }
 
@@ -93,6 +76,37 @@ namespace Business.Concrete
         public void Update(Car car)
         {
             _carDal.Update(car);
+        }
+
+        private IResult Validation(Car car)
+        {
+            int carprice = Convert.ToInt32(car.Price);
+
+            if (car.Description.Length >= 2)
+            {
+                if (carprice > 0)
+                {
+                    if (car.ModelYear.Length == 4)
+                    {
+                        return new Result(true);
+                    }
+                    else
+                    {
+                        return new ErrorResult("Model yılını kontrol ediniz.");
+                    }
+
+
+                }
+                else
+                {
+                    return new ErrorResult("Aracın fiyatı 0 dan büyük olmalı");
+                }
+
+            }
+            else
+            {
+                return new ErrorResult("Araç açıklaması 2 karakterden uzun olmalı.");
+            }
         }
     }
 }
