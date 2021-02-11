@@ -27,9 +27,9 @@ namespace Business.Concrete
             _modelDal.Delete(model);
         }
 
-        public List<Model> GetAll()
+        public IDataResult<List<Model>> GetAll()
         {
-            return _modelDal.GetAll();
+            return new SuccessDataResult<List<Model>>(_modelDal.GetAll());
         }
 
 

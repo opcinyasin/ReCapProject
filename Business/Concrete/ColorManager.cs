@@ -30,9 +30,9 @@ namespace Business.Concrete
             colorDal.Delete(color);
         }
 
-        public List<Color> GetAll()
+        public IDataResult<List<Color>> GetAll()
         {
-            return colorDal.GetAll();
+            return new SuccessDataResult<List<Color>>(colorDal.GetAll());
         }
 
 

@@ -42,34 +42,34 @@ namespace Business.Concrete
             _carDal.Delete(car);
         }
 
-        public List<Car> GetAll()
+        public IDataResult<List<Car>> GetAll()
         {
-            return _carDal.GetAll();
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(),Messages.CarListed);
         }
 
-        public CarPto GetCarDetailsById(int id)
+        public IDataResult<CarPto> GetCarDetailsById(int id)
         {
-            return _carDal.GetCarDetailById(id);
+            return new SuccessDataResult<CarPto>(_carDal.GetCarDetailById(id));
         }
 
-        public List<Car> GetCarsByBrandId(int id)
+        public IDataResult<List<Car>> GetCarsByBrandId(int id)
         {
-            return _carDal.GetAll(b => b.BrandId == id);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(b => b.BrandId == id));
         }
 
-        public List<Car> GetCarsByColorId(int id)
+        public IDataResult<List<Car>> GetCarsByColorId(int id)
         {
-            return _carDal.GetAll(b => b.ColorId == id);
+            return new SuccessDataResult<List<Car>>( _carDal.GetAll(b => b.ColorId == id));
         }
 
-        public List<Car> GetCarsByModelId(int id)
+        public IDataResult<List<Car>> GetCarsByModelId(int id)
         {
-            return _carDal.GetAll(m => m.ModelId == id);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(m => m.ModelId == id));
         }
 
-        public List<Car> GetCarsByPrice(int min, int max)
+        public IDataResult<List<Car>> GetCarsByPrice(int min, int max)
         {
-            return _carDal.GetAll(p => Convert.ToInt32(p.Price) >= min && Convert.ToInt32(p.Price) <= max);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => Convert.ToInt32(p.Price) >= min && Convert.ToInt32(p.Price) <= max));
         }
 
         public void Update(Car car)

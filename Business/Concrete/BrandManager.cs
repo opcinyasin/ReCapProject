@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Core.Business;
 using Core.Utilities;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -30,9 +31,9 @@ namespace Business.Concrete
             _brandDal.Delete(brand);
         }
 
-        public List<Brand> GetAll()
+        public IDataResult<List<Brand>> GetAll()
         {
-            return _brandDal.GetAll();
+            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll());
         }
 
         public void Update(Brand brand)
