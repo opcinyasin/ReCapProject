@@ -37,14 +37,15 @@ namespace Business.Concrete
 
         }
 
-        public void Delete(Car car)
+        public IResult Delete(Car car)
         {
             _carDal.Delete(car);
+            return new SuccessResult();
         }
 
         public IDataResult<List<Car>> GetAll()
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(),Messages.CarListed);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarListed);
         }
 
         public IDataResult<CarPto> GetCarDetailsById(int id)
@@ -59,7 +60,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>> GetCarsByColorId(int id)
         {
-            return new SuccessDataResult<List<Car>>( _carDal.GetAll(b => b.ColorId == id));
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(b => b.ColorId == id));
         }
 
         public IDataResult<List<Car>> GetCarsByModelId(int id)
@@ -72,9 +73,10 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => Convert.ToInt32(p.Price) >= min && Convert.ToInt32(p.Price) <= max));
         }
 
-        public void Update(Car car)
+        public IResult Update(Car car)
         {
             _carDal.Update(car);
+            return new SuccessResult();
         }
 
         private IResult Validation(Car car)
@@ -85,27 +87,15 @@ namespace Business.Concrete
             {
                 if (carprice > 0)
                 {
-                    if (car.ModelYear.Length == 4)
-                    {
-                        return new SuccessResult();
-                    }
-                    else
-                    {
-                        return new ErrorResult(Messages.CarModelYearInvalid);
-                    }
+                    if (car.ModelYear.Length == 4) return new SuccessResult();
 
+                    else return new ErrorResult(Messages.CarModelYearInvalid);
 
                 }
-                else
-                {
-                    return new ErrorResult(Messages.CarPriceInvalid);
-                }
+                else return new ErrorResult(Messages.CarPriceInvalid);
 
             }
-            else
-            {
-                return new ErrorResult(Messages.CarDescriptionInvalid);
-            }
+            else return new ErrorResult(Messages.CarDescriptionInvalid);
         }
     }
 }

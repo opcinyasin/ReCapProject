@@ -22,9 +22,10 @@ namespace Business.Concrete
             return new SuccessResult("Eklendi");
         }
 
-        public void Delete(Model model)
+        public IResult Delete(Model model)
         {
             _modelDal.Delete(model);
+            return new SuccessResult();
         }
 
         public IDataResult<List<Model>> GetAll()
@@ -33,9 +34,10 @@ namespace Business.Concrete
         }
 
 
-        public void Update(Model model)
+        public IResult Update(Model model)
         {
             _modelDal.Update(model);
+            return new SuccessResult();
         }
     }
 }

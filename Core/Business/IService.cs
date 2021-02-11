@@ -11,7 +11,7 @@ namespace Core.Business
     {
         IDataResult<List<T>> GetAll();
         IResult Add(T item);
-        void Update(T item);
-        void Delete(T item);
+        IResult Update(T item);
+        IResult Delete(T item);
     }
 }

@@ -22,7 +22,6 @@ namespace ConsoleUI
                 }
             }
             else Console.WriteLine(results.Message);
-            
 
         }
     }

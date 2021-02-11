@@ -25,9 +25,10 @@ namespace Business.Concrete
             return new SuccessResult("Eklendi");
         }
 
-        public void Delete(Color color)
+        public IResult Delete(Color color)
         {
             colorDal.Delete(color);
+            return new SuccessResult();
         }
 
         public IDataResult<List<Color>> GetAll()
@@ -36,9 +37,10 @@ namespace Business.Concrete
         }
 
 
-        public void Update(Color color)
+        public IResult Update(Color color)
         {
             colorDal.Update(color);
+            return new SuccessResult();
         }
     }
 }
