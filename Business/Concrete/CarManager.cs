@@ -1,5 +1,8 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation.FluentValidation;
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -20,20 +23,14 @@ namespace Business.Concrete
 
         }
 
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
 
-            var result = Validation(car);
+            _carDal.Add(car);
 
-            if (result.Success)
-            {
-                _carDal.Add(car);
-                return new SuccessResult(Messages.CarAdded);
-            }
-            else
-            {
-                return result;
-            }
+            return new SuccessResult(Messages.CarAdded);
+
 
         }
 
@@ -79,23 +76,5 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        private IResult Validation(Car car)
-        {
-            int carprice = Convert.ToInt32(car.Price);
-
-            if (car.Description.Length >= 2)
-            {
-                if (carprice > 0)
-                {
-                    if (car.ModelYear.Length == 4) return new SuccessResult();
-
-                    else return new ErrorResult(Messages.CarModelYearInvalid);
-
-                }
-                else return new ErrorResult(Messages.CarPriceInvalid);
-
-            }
-            else return new ErrorResult(Messages.CarDescriptionInvalid);
-        }
     }
 }

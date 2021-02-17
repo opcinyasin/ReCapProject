@@ -1,12 +1,6 @@
 ﻿using Business.Abstract;
-using Business.Concrete;
 using Entities.Concrete;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
 {
@@ -20,7 +14,7 @@ namespace WebAPI.Controllers
         public CarsController(ICarService carService)
         {
             _carService = carService;
-            
+
         }
 
         [HttpGet("getall")]
@@ -72,9 +66,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getcarsbyprice")]
-        public IActionResult GetCarsByPrice(int min,int max)
+        public IActionResult GetCarsByPrice(int min, int max)
         {
-            var result = _carService.GetCarsByPrice(min,max);
+            var result = _carService.GetCarsByPrice(min, max);
             if (result.Success)
             {
                 return Ok(result);
@@ -108,7 +102,8 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("update")]
-        public IActionResult Update (Car car){
+        public IActionResult Update(Car car)
+        {
 
             var result = _carService.Update(car);
 
