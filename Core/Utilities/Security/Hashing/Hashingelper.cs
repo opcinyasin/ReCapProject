@@ -11,10 +11,6 @@ namespace Core.Utilities.Security.Hashing
                 passwordSalt = hmac.Key;
                 passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
 
-                if (VerifyPasswordHash(password,passwordHash,passwordSalt))
-                {
-
-                }
             }
         }
 
