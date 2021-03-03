@@ -3,6 +3,7 @@ using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Performance;
 using Core.Aspects.Autofac.Validation.FluentValidation;
 using Core.Utilities;
 using Core.Utilities.Results;
@@ -27,6 +28,7 @@ namespace Business.Concrete
         [CacheRemoveAspect("ICarService.Get")]
         [SecuredOperation("admin")]
         [ValidationAspect(typeof(CarValidator))]
+        [PerformanceAspect(5)]
         public IResult Add(Car car)
         {
 
