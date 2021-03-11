@@ -33,6 +33,12 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Model>>(_modelDal.GetAll());
         }
 
+        public IDataResult<List<Model>> getById(int id)
+        {
+
+            return new SuccessDataResult<List<Model>>(_modelDal.GetAll(m => m.ModelId == id));
+
+        }
 
         public IResult Update(Model model)
         {

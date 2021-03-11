@@ -10,6 +10,7 @@ namespace Core.Business
     public interface IService<T> where T:class,IEntity,new()
     {
         IDataResult<List<T>> GetAll();
+        IDataResult<List<T>> getById(int id);
         IResult Add(T item);
         IResult Update(T item);
         IResult Delete(T item);
