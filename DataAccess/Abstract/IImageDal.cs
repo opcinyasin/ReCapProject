@@ -1,11 +1,12 @@
 ﻿using Core.DataAccess.EntityFramework;
 using Entities.Concrete;
+using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace DataAccess.Abstract
 {
-    public interface ICarDal:IEntityRepository<Car>
+    public interface IImageDal:IEntityRepository<Image>
     {
-        CarDto GetCarDetailById(int id);
     }
 }

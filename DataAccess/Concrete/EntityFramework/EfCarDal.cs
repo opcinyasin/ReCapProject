@@ -9,7 +9,7 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfCarDal : EfEntityRepositoryBase<Car, SqlDbContext>, ICarDal
     {
-        public CarPto GetCarDetailById(int id)
+        public CarDto GetCarDetailById(int id)
         {
             using (SqlDbContext dbContext = new SqlDbContext())
             {
@@ -19,7 +19,7 @@ namespace DataAccess.Concrete.EntityFramework
                              join m in dbContext.Model on c.ModelId equals m.ModelId
                              join col in dbContext.Color on c.ColorId equals col.ColorId
                              select new
-                             CarPto { Id = c.Id, BrandName = b.BrandName, ModelName = m.ModelName, ColorName = col.ColorName, ModelYear = c.ModelYear, Price = c.Price, Description = c.Description };
+                             CarDto { Id = c.Id, BrandName = b.BrandName, ModelName = m.ModelName, ColorName = col.ColorName, ModelYear = c.ModelYear, Price = c.Price, Description = c.Description };
 
                 return result.SingleOrDefault(c=>c.Id==id);
             }
