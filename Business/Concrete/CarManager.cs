@@ -11,6 +11,7 @@ using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace Business.Concrete
 {
@@ -26,7 +27,7 @@ namespace Business.Concrete
         }
 
         [CacheRemoveAspect("ICarService.Get")]
-       // [SecuredOperation("admin")]
+        [SecuredOperation("admin,product.add")]
         [ValidationAspect(typeof(CarValidator))]
         [PerformanceAspect(5)]
         public IResult Add(Car car)
@@ -67,6 +68,7 @@ namespace Business.Concrete
 
         public IDataResult<List<CarDto>> GetCarsDetails()
         {
+            Thread.Sleep(5);
             return new SuccessDataResult<List<CarDto>>(_carDal.GetCarsDetails());
         }
 

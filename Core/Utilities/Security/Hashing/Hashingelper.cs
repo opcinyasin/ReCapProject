@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Runtime.InteropServices;
+using System.Text;
 
 namespace Core.Utilities.Security.Hashing
 {
@@ -10,6 +11,8 @@ namespace Core.Utilities.Security.Hashing
             {
                 passwordSalt = hmac.Key;
                 passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
+                hmac.Key = Encoding.UTF8.GetBytes(password);
+                passwordHash = hmac.ComputeHash(passwordHash);
 
             }
         }
@@ -19,6 +22,8 @@ namespace Core.Utilities.Security.Hashing
             using (var hmac = new System.Security.Cryptography.HMACSHA512(passwordSalt))
             {
                 var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
+                hmac.Key = Encoding.UTF8.GetBytes(password);
+                computedHash = hmac.ComputeHash(computedHash);
 
                 for (int i = 0; i < computedHash.Length; i++)
                 {
