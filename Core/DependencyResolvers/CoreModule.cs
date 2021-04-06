@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using Core.CrossCuttingConcerns.Caching.Redis;
 
 namespace Core.DependencyResolvers
 {
