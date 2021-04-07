@@ -89,8 +89,18 @@ namespace Business.Concrete
             return deleteResult;
         }
 
+        public IDataResult<List<Image>> GetAllImage()
+        {
+            return new SuccessDataResult<List<Image>>(data: _imageDal.GetAll());
+        }
 
-        private IResult CheckImageLimitExceeded(int carid)
+        public IDataResult<List<Image>> GetImageById(int id)
+        {
+            return new SuccessDataResult<List<Image>>(_imageDal.GetAll(i => i.CarId == id));
+        }
+
+
+        private  IResult CheckImageLimitExceeded(int carid)
         {
             var carImagecount = _imageDal.GetAll(p => p.CarId == carid).Count;
             if (carImagecount >= 5)
@@ -113,44 +123,13 @@ namespace Business.Concrete
 
         public IDataResult<List<ImageDto>> GetAll()
         {
-            List<ImageDto> dtoList = null;
-            List<Image> images = _imageDal.GetAll();
-
-            foreach (var image in images)
-            {
-                dtoList.Add(new ImageDto { Id = image.Id, CarId = image.CarId, ImagePath = image.ImagePath, DateTime = image.DateTime, Files = null });
-            }
-
-            if (dtoList == null)
-            {
-                return new ErrorDataResult<List<ImageDto>>(message: "Eşleşen data yok");
-            }
-
-            return new SuccessDataResult<List<ImageDto>>(data: dtoList);
-
+            throw new Exception();
         }
 
-        public IDataResult<List<ImageDto>> getById(int id)
+        public IDataResult<List<ImageDto>> GetById(int id)
         {
-            List<ImageDto> dtoList = null;
-            List<Image> images = _imageDal.GetAll(i => i.Id == id);
-
-            foreach (var image in images)
-            {
-                dtoList.Add(new ImageDto { Id = image.Id, CarId = image.CarId, ImagePath = image.ImagePath, DateTime = image.DateTime, Files = null });
-            }
-
-            if (dtoList == null)
-            {
-                return new ErrorDataResult<List<ImageDto>>(message: "Eşleşen data yok");
-            }
-
-            return new SuccessDataResult<List<ImageDto>>(data: dtoList);
+            throw new Exception();
         }
-
-
-
-
 
     }
 }

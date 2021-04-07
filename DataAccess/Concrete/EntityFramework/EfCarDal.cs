@@ -31,10 +31,9 @@ namespace DataAccess.Concrete.EntityFramework
 
         public List<CarDto> GetAllCarDetails(Expression<Func<Car, bool>> filter = null)
         {
-            using (SqlDbContext dbContext = new SqlDbContext())
-            {
-                return filter == null ? this.GetCarsDetails() : GetFilterCarDetails(this.GetAll(filter));
-            }
+            
+            return filter == null ? this.GetCarsDetails() : GetFilterCarDetails(this.GetAll(filter));
+            
         }
 
         private List<CarDto> GetCarsDetails()

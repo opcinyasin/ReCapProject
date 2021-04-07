@@ -35,7 +35,7 @@ namespace WebAPI.Controllers
         [HttpGet("getBrandById")]
         public IActionResult GetBrandById(int id)
         {
-            var result = _brandService.getById(id);
+            var result = _brandService.GetById(id);
             if (result.Success)
             {
                 return Ok(result);

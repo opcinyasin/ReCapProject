@@ -37,7 +37,6 @@ namespace Business.Concrete
 
             return new SuccessResult(Messages.CarAdded);
 
-
         }
 
         [CacheRemoveAspect("ICarService.Get")]
@@ -53,9 +52,8 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarListed);
         }
 
-        public IDataResult<List<Car>> getById(int id)
+        public IDataResult<List<Car>> GetById(int id)
         {
-
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.Id == id));
 
         }
@@ -75,6 +73,7 @@ namespace Business.Concrete
 
         public IDataResult<List<CarDto>> GetCarsByBrandId(int id)
         {
+            
             return new SuccessDataResult<List<CarDto>>(_carDal.GetAllCarDetails(c=>c.BrandId==id));
         }
 
@@ -90,7 +89,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>> GetCarsByPrice(int min, int max)
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => Convert.ToInt32(p.Price) >= min && Convert.ToInt32(p.Price) <= max));
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => int.Parse(p.Price) >= min && int.Parse(p.Price) <= max));
         }
 
         [CacheRemoveAspect("ICarService.Get")]

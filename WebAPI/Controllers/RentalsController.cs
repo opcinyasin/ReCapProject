@@ -35,7 +35,7 @@ namespace WebAPI.Controllers
         [HttpGet("getRentalById")]
         public IActionResult GetRentalById(int id)
         {
-            var result = _rentalService.getById(id);
+            var result = _rentalService.GetById(id);
             if (result.Success)
             {
                 return Ok(result);

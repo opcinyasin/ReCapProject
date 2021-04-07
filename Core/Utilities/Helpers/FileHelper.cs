@@ -34,8 +34,8 @@ namespace Core.Utilities.Helpers
 
         private static string newFileName()
         {
-            var folderName = "images";
-            var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+            var folderName = "Images";
+            var pathToSave = Path.Combine(Directory.GetCurrentDirectory(),"wwwroot", folderName);
             var dbPath = Path.Combine(pathToSave, Guid.NewGuid().ToString());
 
 

@@ -23,6 +23,35 @@ namespace WebAPI.Controllers
             this._imageService = imageService;
         }
 
+
+        [HttpGet("getall")]
+        public IActionResult GetAll()
+        {
+            var result = _imageService.GetAllImage();
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+
+        }
+
+        [HttpGet("getimagebyid")]
+        public IActionResult GetImageById(int id)
+        {
+            var result = _imageService.GetImageById(id);
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+
+        }
+
         [HttpPost("add")]
         public IActionResult Add([FromForm(Name =("carId"))] int carId)
         {

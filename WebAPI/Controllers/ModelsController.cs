@@ -35,7 +35,7 @@ namespace WebAPI.Controllers
         [HttpGet("getModelById")]
         public IActionResult GetModelById(int id)
         {
-            var result = _modelService.getById(id);
+            var result = _modelService.GetById(id);
             if (result.Success)
             {
                 return Ok(result);
