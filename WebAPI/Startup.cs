@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using Core.DependencyResolvers;
 using Core.Extensions;
@@ -12,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 
 namespace WebAPI
 {
@@ -29,6 +31,21 @@ namespace WebAPI
         {
             services.AddControllers();
             services.AddCors();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("RentCarApi", new OpenApiInfo {
+                    Version = "v1",
+                    Title = "RentCar API",
+                    Description = "A simple example ASP.NET Core Web API",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Yasin Opçin",
+                        Email = "opcinyasin7@gmail.com"
+                    },
+                });
+            });
+
 
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
@@ -89,6 +106,12 @@ namespace WebAPI
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/RentCarApi/swagger.json", "RentCar API");
             });
         }
     }
