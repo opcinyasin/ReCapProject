@@ -11,6 +11,7 @@ using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 
 namespace Business.Concrete
@@ -61,7 +62,7 @@ namespace Business.Concrete
         [CacheAspect]
         public IDataResult<CarDto> GetCarDetailsById(int id)
         {
-            return new SuccessDataResult<CarDto>(_carDal.GetCarDetailById(id));
+            return new SuccessDataResult<CarDto>(_carDal.GetAllCarDetails(c=>c.Id==id).FirstOrDefault());
         }
 
         public IDataResult<List<CarDto>> GetAllCarsDetails()
@@ -73,8 +74,8 @@ namespace Business.Concrete
 
         public IDataResult<List<CarDto>> GetCarsByBrandId(int id)
         {
-            
-            return new SuccessDataResult<List<CarDto>>(_carDal.GetAllCarDetails(c=>c.BrandId==id));
+
+            return new SuccessDataResult<List<CarDto>>(_carDal.GetAllCarDetails(c => c.BrandId == id));
         }
 
         public IDataResult<List<CarDto>> GetCarsByColorId(int id)
