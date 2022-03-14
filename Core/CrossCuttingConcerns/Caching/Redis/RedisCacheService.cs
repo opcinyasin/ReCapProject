@@ -20,7 +20,7 @@ namespace Core.CrossCuttingConcerns.Caching.Redis
         public RedisCacheService()
         {
 
-            conf = new RedisEndpoint { Host = "localhost", Port = 6379, Password = "", RetryTimeout = 1000 };
+            conf = new RedisEndpoint { Host = "redis-17469.c99.us-east-1-4.ec2.cloud.redislabs.com", Port = 17469, Password = "A6qI0AICu2iL75xCqvbuIjdNJxOikeqv", RetryTimeout = 1000 };
             //conf = new RedisEndpoint { Host = _devnotConfig.Value.RedisEndPoint, Port = _devnotConfig.Value.RedisPort, Password = "" };
         }
         public T Get<T>(string key)
