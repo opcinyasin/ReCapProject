@@ -6,6 +6,9 @@ namespace Core.CrossCuttingConcerns.Caching.Redis
 {
     public interface IRedisCacheService
     {
+        object Get(string key, Type type);
+        void Set(string key, object data, int duration, Type type);
+        void Set(string key, object data, Type type);
         T Get<T>(string key);
         IList<T> GetAll<T>(string key);
         void Set(string key, object data);

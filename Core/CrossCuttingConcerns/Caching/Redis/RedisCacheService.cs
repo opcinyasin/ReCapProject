@@ -1,11 +1,11 @@
-﻿using Newtonsoft.Json;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using ServiceStack.Redis;
+using ServiceStack.Text;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Threading.Tasks;
 
 namespace Core.CrossCuttingConcerns.Caching.Redis
 {
@@ -20,7 +20,7 @@ namespace Core.CrossCuttingConcerns.Caching.Redis
         public RedisCacheService()
         {
 
-            conf = new RedisEndpoint { Host = "redis-17469.c99.us-east-1-4.ec2.cloud.redislabs.com", Port = 17469, Password = "A6qI0AICu2iL75xCqvbuIjdNJxOikeqv", RetryTimeout = 1000 };
+            conf = new RedisEndpoint { Host = "127.0.0.1", Port = 6379, Password = "", RetryTimeout = 1000 };
             //conf = new RedisEndpoint { Host = _devnotConfig.Value.RedisEndPoint, Port = _devnotConfig.Value.RedisPort, Password = "" };
         }
         public T Get<T>(string key)
@@ -73,13 +73,14 @@ namespace Core.CrossCuttingConcerns.Caching.Redis
         {
             try
             {
+                //RedisInvoker(x => x.Add(key, data, TimeSpan.FromMinutes(duration)));
                 using (IRedisClient client = new RedisClient(conf))
                 {
-                    var dataSerialize = JsonConvert.SerializeObject(data, Formatting.Indented, new JsonSerializerSettings
-                    {
-                        PreserveReferencesHandling = PreserveReferencesHandling.Objects
-                    });
-                    client.Set(key, Encoding.UTF8.GetBytes(dataSerialize), time);
+                //    var dataSerialize = JsonConvert.SerializeObject(data, Formatting.Indented, new JsonSerializerSettings
+                //    {
+                //        PreserveReferencesHandling = PreserveReferencesHandling.Objects
+                //    });
+                    client.Set(key, data, time);
                 }
             }
             catch
@@ -176,6 +177,32 @@ namespace Core.CrossCuttingConcerns.Caching.Redis
         public void Dispose()
         {
             throw new NotImplementedException();
+        }
+
+        public object Get(string key, Type type)
+        {
+            var json = Get<string>(key);
+            var result = JsonSerializer.DeserializeFromString(json, type);
+
+            //return typeof(Task)
+            //  .GetMethod(nameof(Task.FromResult))
+            //.MakeGenericMethod(type)
+            ///.Invoke(this, new object[] { result });
+            ///
+            return result;
+        }
+
+        public void Set(string key, dynamic data, int duration, Type type)
+        {
+            var json = JsonSerializer.SerializeToString(data, type);
+            Set(key, json);
+            
+        }
+
+        public void Set(string key, dynamic data, Type type)
+        {
+            var json = JsonSerializer.SerializeToString(data, type);
+            Set(key, json);
         }
     }
 }
